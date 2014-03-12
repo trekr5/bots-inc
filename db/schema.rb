@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311171452) do
+ActiveRecord::Schema.define(version: 20140311175757) do
+
+  create_table "basket_items", force: true do |t|
+    t.integer  "basket_id"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "basket_items", ["basket_id"], name: "index_basket_items_on_basket_id"
+  add_index "basket_items", ["item_id"], name: "index_basket_items_on_item_id"
+
+  create_table "baskets", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "baskets", ["user_id"], name: "index_baskets_on_user_id"
+
+  create_table "deliveries", force: true do |t|
+    t.integer  "purchase_id"
+    t.integer  "robot_id"
+    t.datetime "delivered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "deliveries", ["purchase_id"], name: "index_deliveries_on_purchase_id"
+  add_index "deliveries", ["robot_id"], name: "index_deliveries_on_robot_id"
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -19,6 +48,24 @@ ActiveRecord::Schema.define(version: 20140311171452) do
     t.string   "sku"
     t.integer  "price"
     t.integer  "stock"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchases", force: true do |t|
+    t.integer  "basket_id"
+    t.integer  "user_id"
+    t.string   "payment_type"
+    t.boolean  "payment_complete"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "purchases", ["basket_id"], name: "index_purchases_on_basket_id"
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
+
+  create_table "robots", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
