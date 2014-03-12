@@ -7,7 +7,9 @@ class CreateItems < ActiveRecord::Migration
       t.integer :price
       t.integer :stock
 
-      t.timestamps
+      #t.timestamps
+      t.datetime :created_at
+      t.datetime :updated_at
     end
   end
 end
