@@ -26,3 +26,16 @@ end
 Item.create!(name: "Puncture Repair Kit", price: 2499, stock: "100", sku: "BK992-PCR", description: "Puncture repair kit, suitable for all inner tubes. Two patches with sealant.")
 Item.create!(name: "Inflatable globe", price: 1259, stock: "460", sku: "F1988-IGL", description: "Inflatable globe. Great for kids. 24\" across when fully inflated.")
 Item.create!(name: "2-pin to UK socket adapter", price: 4420, stock: "370", sku: "ADA23F99-2PA", description: "Got a 2 pin plug on your device, but a 3-pin UK socket? Covert between them with this handy device.")
+
+starting_date = 24.months.ago
+
+users = User.all
+items = Item.all
+users.shuffle.each_with_index do |user, i|
+  date = starting_date + i.weeks
+
+  basket = Basket.create!(user: user, created_at: date, updated_at: date)
+  items.shuffle.take(rand(3)).each do |item|
+    BasketItem.create!(item: item, basket: basket)
+  end
+end
