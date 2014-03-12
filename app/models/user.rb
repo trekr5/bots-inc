@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
 
   has_one :basket
   has_many :purchases
+
+
+  def basket
+    @basket ||= Basket.find_or_create_by(user_id: id)
+  end
 end

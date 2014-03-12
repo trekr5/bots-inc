@@ -6,4 +6,8 @@
   <div class="price">
     <%= number_to_currency (item.price/100), unit: "฿" %>
   </div>
+
+  <div>
+    <%= button_to "Add to basket", basket_items_path(item_id: item.id, basket_id: current_user.basket.id) %>
+  </div>
 </div>

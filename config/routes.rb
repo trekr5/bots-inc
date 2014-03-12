@@ -5,6 +5,8 @@ BotsInc::Application.routes.draw do
 
   resources :items
 
+  resources :basket_items, only: [:create]
+
   root to: 'homepage#show'
 
   # Example of regular route:

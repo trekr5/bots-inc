@@ -6,6 +6,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if flash[:notice] %>
+    <div class="flash notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  
   <div class="nav">
     <%= link_to "Log in", new_user_session_path unless user_signed_in? %>
   </div>
